@@ -6,17 +6,12 @@ This is equivalent to b = A @ s (matrix-vector product).
 
 import numpy as np
 
-# --- Data from PDF example ---
-n = 3
-epsilon = 1e-10
+# --- Random data ---
+n = 5
+rng = np.random.default_rng()
 
-A = np.array([
-    [0, 0, 4],
-    [1, 2, 3],
-    [0, 1, 2]
-], dtype=float)
-
-s = np.array([3, 2, 1], dtype=float)
+A = rng.integers(0, 10, size=(n, n)).astype(float)
+s = rng.integers(1, 10, size=n).astype(float)
 
 # b_i = sum_{j=1}^{n} s_j * a_{ij}
 b = np.zeros(n)

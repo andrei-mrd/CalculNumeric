@@ -11,17 +11,13 @@ import scipy.linalg
 
 from ex2 import householder_qr, back_substitution
 
-# --- Data from PDF example ---
-n = 3
+# --- Random data ---
+n = 5
 epsilon = 1e-10
+rng = np.random.default_rng()
 
-A = np.array([
-    [0, 0, 4],
-    [1, 2, 3],
-    [0, 1, 2]
-], dtype=float)
-
-s = np.array([3, 2, 1], dtype=float)
+A = rng.integers(0, 10, size=(n, n)).astype(float)
+s = rng.integers(1, 10, size=n).astype(float)
 b = A @ s   # from exercise 1
 
 print("=== Exercise 3: Solve Ax = b ===")

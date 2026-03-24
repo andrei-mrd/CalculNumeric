@@ -125,19 +125,17 @@ def back_substitution(R, b, epsilon=1e-10):
 #  Demo with the PDF example                                          #
 # ------------------------------------------------------------------ #
 if __name__ == "__main__":
-    A = np.array([
-        [0, 0, 4],
-        [1, 2, 3],
-        [0, 1, 2]
-    ], dtype=float)
-
-    s = np.array([3, 2, 1], dtype=float)
+    rng = np.random.default_rng()
+    n = 10
+    A = rng.integers(0, 10, size=(n, n)).astype(float)
+    s = rng.integers(1, 10, size=n).astype(float)
     b = A @ s   # b from exercise 1
 
     print("=== Exercise 2: Householder QR decomposition ===")
     print(f"A =\n{A}")
     print(f"b = {b}")
 
+    A_init = A.copy()
     R, Qt, b_trans, singular = householder_qr(A, b)
 
     if singular:
@@ -149,7 +147,5 @@ if __name__ == "__main__":
         print(f"\nQ^T =\n{Qt}")
         print(f"\nb_transformed (Q^T @ b) = {b_trans}")
 
-        # Verification: Q @ R should equal A_init
-        A_init = np.array([[0, 0, 4], [1, 2, 3], [0, 1, 2]], dtype=float)
         print(f"\nVerification ||Q @ R - A_init||_2 = {np.linalg.norm(Q @ R - A_init):.2e}")
         print(f"Verification Q^T @ Q = I:\n{np.round(Qt @ Q, 10)}")
