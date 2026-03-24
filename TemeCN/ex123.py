@@ -1,4 +1,3 @@
-# 40% generat cu ChatGPT
 #ex1
 print("ex1 : ")
 m = 1
@@ -36,7 +35,3 @@ else:
 print(x, y, z)
 print((x * y) * z)
 print(x * (y * z))
-
-#ex3
-#aproximare lentz
-print("ex3 : ")
