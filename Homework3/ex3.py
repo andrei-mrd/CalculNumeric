@@ -29,7 +29,9 @@ print(f"b = {b}")
 # ------------------------------------------------------------------ #
 Q_lib, R_lib = scipy.linalg.qr(A)
 # Ax = b  <=>  QRx = b  <=>  Rx = Q^T @ b
+# b_lib = Q^T @ b
 b_lib = Q_lib.T @ b
+#se rezolva Rx = b_lib
 x_QR = scipy.linalg.solve_triangular(R_lib, b_lib)
 
 print(f"\nx_QR (library)        = {x_QR}")

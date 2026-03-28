@@ -60,9 +60,11 @@ def householder_qr(A_input, b_input, epsilon=1e-10):
             return A, Qt, b, True   # singular matrix
 
         k = math.sqrt(sigma)
+        #pt stabilitate numerica, daca nu am face asta, beta ar fi foarte mic
         if A[r][r] > 0:
             k = -k
 
+        #factor de normalizare, apare cand aplicam reflectia fara sa construim explicit Pr
         beta = sigma - k * A[r][r]
 
         u = np.zeros(n)
@@ -118,6 +120,7 @@ def back_substitution(R, b, epsilon=1e-10):
         for j in range(i + 1, n):
             x[i] -= R[i][j] * x[j]
         x[i] /= R[i][i]
+        # x[i] = (b[i] - suma termenilor deja calculati) / R[i][i]
     return x
 
 
